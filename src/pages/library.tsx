@@ -1,10 +1,11 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Video, Search, Filter, Clock } from "lucide-react"
+import { Video, Search, Filter, Clock, Edit } from "lucide-react"
 import { DashboardLayout } from "@/components/layout/dashboard-layout"
 
 export function LibraryPage() {
@@ -140,9 +141,17 @@ export function LibraryPage() {
                       <span>{reel.machine}</span>
                       <span>{reel.skillLevel}</span>
                     </div>
-                    <Button variant="outline" className="w-full">
-                      Watch Reel
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button variant="outline" className="flex-1" asChild>
+                        <Link to={`/reels/${reel.id}/edit`}>
+                          <Edit className="h-4 w-4 mr-2" />
+                          Edit
+                        </Link>
+                      </Button>
+                      <Button variant="default" className="flex-1">
+                        Watch Reel
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
