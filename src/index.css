@@ -1,68 +1,171 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+/* Design System with CSS Custom Properties */
+/* Based on design_rules.md color palette */
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* Primary background: #F9FAFB */
+    --background: 249 250 251;
+    
+    /* Surface/Container: #FFFFFF */
+    --card: 255 255 255;
+    --card-foreground: 17 24 39;
+    
+    /* Accent: #2563EB */
+    --accent: 37 99 235;
+    --accent-foreground: 255 255 255;
+    
+    /* Primary button color */
+    --primary: 37 99 235;
+    --primary-foreground: 255 255 255;
+    
+    /* Secondary */
+    --secondary: 107 114 128;
+    --secondary-foreground: 255 255 255;
+    
+    /* Success: #22C55E */
+    --success: 34 197 94;
+    
+    /* Text Primary: #111827 */
+    --foreground: 17 24 39;
+    
+    /* Text Secondary: #6B7280 */
+    --muted: 107 114 128;
+    --muted-foreground: 107 114 128;
+    
+    /* Neutral/Disabled: #E5E7EB */
+    --border: 229 231 235;
+    --input: 229 231 235;
+    
+    /* Ring (focus): #2563EB */
+    --ring: 37 99 235;
+    
+    /* Status/Archived: #9CA3AF */
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    
+    /* Border radius */
+    --radius: 0.5rem;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
-  button {
-    background-color: #f9f9f9;
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Typography hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+  
+  h6 {
+    @apply text-base md:text-lg;
+  }
+}
+
+@layer components {
+  /* Card styles matching design system */
+  .card-base {
+    @apply bg-card text-card-foreground rounded-lg shadow-card;
+    border-radius: 8px;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer;
+  }
+  
+  /* Button base styles */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground rounded-lg px-6 py-3 font-medium;
+    @apply transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border border-border text-foreground rounded-lg px-6 py-3 font-medium;
+    @apply transition-all duration-200 hover:bg-muted/10 active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  /* Form input styles */
+  .input-base {
+    @apply w-full px-4 py-2 bg-card border border-input rounded-lg;
+    @apply text-foreground placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+  
+  /* Sidebar navigation item */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200;
+    @apply text-foreground hover:bg-muted/10;
+  }
+  
+  .nav-item-active {
+    @apply bg-muted font-semibold;
+  }
+}
+
+/* Smooth Scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Focus Visible for Accessibility */
+:focus-visible {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--muted));
 }
