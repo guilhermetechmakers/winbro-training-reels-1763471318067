@@ -11,6 +11,7 @@ import { DashboardPage } from "@/pages/dashboard"
 import { LibraryPage } from "@/pages/library"
 import { EditReelPage } from "@/pages/edit-reel"
 import { CheckoutPage } from "@/pages/checkout"
+import { TransactionHistoryPage } from "@/pages/transaction-history"
 import { NotFoundPage } from "@/pages/not-found"
 
 // React Query client with optimal defaults
@@ -37,6 +38,7 @@ function App() {
           <Route path="/library" element={<LibraryPage />} />
           <Route path="/reels/:id/edit" element={<EditReelPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/transactions" element={<TransactionHistoryPage />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

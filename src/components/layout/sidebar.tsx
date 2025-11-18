@@ -9,6 +9,7 @@ import {
   BarChart3,
   Users,
   FileVideo,
+  Receipt,
 } from "lucide-react"
 
 interface NavItem {
@@ -23,6 +24,7 @@ const navItems: NavItem[] = [
   { title: "Upload Reel", href: "/upload", icon: Video },
   { title: "Courses", href: "/courses", icon: BookOpen },
   { title: "Analytics", href: "/analytics", icon: BarChart3 },
+  { title: "Transaction History", href: "/transactions", icon: Receipt },
   { title: "Settings", href: "/settings", icon: Settings },
 ]
 
